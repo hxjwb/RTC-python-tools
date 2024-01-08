@@ -1,0 +1,5 @@
+# #!/usr/bin/env bash
+# used to run ninja.py
+
+base_dir=$(dirname "$0")
+python "$base_dir/yuvread.py" "$@"
