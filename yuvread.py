@@ -114,7 +114,7 @@ if __name__ == '__main__':
         cv2.imshow("YUV viewer", rgb)
         
         # press 'q' to exit, press 'space' to pause and continue, press left arrow to go back, press right arrow to go forward
-        key = cv2.waitKey(waitKey_time)
+        key = cv2.waitKeyEx(waitKey_time)
         
         if key == ord('q'):
             print('\n') # print a new line
@@ -123,23 +123,22 @@ if __name__ == '__main__':
             play = not play
         elif key == ord('i'):
             show_info = not show_info   
-        elif key == 81: # left arrow
+        elif key == ord('a'): # left arrow
             if cur == 0:
                 continue
             yuvfile.seek(-h*w*3//2*2, 1)
             cur -= 2
-        elif key == 83 and play: # right arrow to fast forward
+        elif key == ord('d') and play: # right arrow to fast forward
             if cur == frame - 1:
                 continue
             yuvfile.seek(h*w*3//2, 1)
             cur += 1
             
-        if key in [81, 83] and not play:
+        if key in [ord('a'), ord('d')] and not play:
             if cur == frame - 1:
                 continue
             refresh = True        # Need continue loop to refresh the image
-        
-        
+
     yuvfile.close()
     cv2.destroyAllWindows()
     
